@@ -1,16 +1,86 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+💰 Personal Finance Dashboard
+A full-stack Personal Finance Dashboard that allows users to securely track income and expenses, visualize spending patterns, and manage transactions with real-time analytics and charts.
 
-Currently, two official plugins are available:
+Built with a modern MERN-style stack and glassmorphism UI design.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🚀 Features
+🔐 JWT Authentication (Register / Login)
 
-## React Compiler
+➕ Add & manage transactions
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+📊 Income vs Expense analytics
 
-## Expanding the ESLint configuration
+🧾 Category-wise expense breakdown
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+📈 Monthly & trend charts
+
+🌙 Dark / Light theme toggle
+
+🤖 AI assistant module (planned upgrade)
+
+👤 User-isolated financial data
+
+⚡ Real-time dashboard refresh
+
+🛠 Tech Stack
+Frontend
+React
+
+JavaScript (ES6+)
+
+Tailwind CSS
+
+Chart.js
+
+Axios
+
+Backend
+Node.js
+
+Express.js
+
+MongoDB Atlas
+
+Mongoose
+
+JWT Authentication
+
+bcrypt
+
+📂 Project Structure
+client/   → React frontend
+server/   → Node + Express backend
+⚙️ Local Setup
+1️⃣ Backend
+cd server
+npm install
+npm start
+Create .env inside server/:
+
+MONGO_URL=your_mongodb_url
+JWT_SECRET=your_secret
+2️⃣ Frontend
+cd client
+npm install
+npm run dev
+🌐 Deployment
+Frontend can be deployed on Vercel
+Backend can be deployed on Render / Railway
+
+(see deployment steps below)
+
+🔮 Roadmap
+Local LLM AI Finance Assistant
+
+AI spending insights
+
+Budget alerts
+
+Export reports
+
+Mobile layout
+
+👨‍💻 Author
+Kunal Tyagi
+B.Tech — Full Stack & ML Track
