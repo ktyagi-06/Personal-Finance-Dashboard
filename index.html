@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -13,3 +14,81 @@
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily News - Your Trusted Source</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="newspaper-icon">📰</div>
+                <h1>Daily News</h1>
+            </div>
+            <nav class="nav-menu">
+                <a href="#" class="nav-item">Home</a>
+                <a href="#" class="nav-item">World</a>
+                <a href="#" class="nav-item">Business</a>
+                <a href="#" class="nav-item">Sports</a>
+                <a href="#" class="nav-item">Tech</a>
+            </nav>
+            <div class="search-container">
+                <div class="search-bar">
+                    <input type="text" id="search-input" placeholder="Search breaking news...">
+                    <button id="search-button">🔍</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="trending-section">
+            <h2><i class="fas fa-fire"></i> Trending Now</h2>
+            <div class="trending-list" id="trending-list">
+                <div class="trending-item" data-term="breaking"># Breaking News</div>
+                <div class="trending-item" data-term="technology"># Technology</div>
+                <div class="trending-item" data-term="sports"># Sports Update</div>
+                <div class="trending-item" data-term="weather"># Weather Alert</div>
+                <div class="trending-item" data-term="market"># Market News</div>
+            </div>
+        </div>
+
+        <div class="hero-section">
+            <div class="section-header">
+                <h2>
+                    <i class="fas fa-map-marker-alt"></i> Local News Near You 
+                    <span class="location-badge" id="location-display">
+                        🌍 Detecting location...
+                    </span>
+                </h2>
+                <div class="filter-tabs">
+                    <div class="filter-tab active" data-category="all">All</div>
+                    <div class="filter-tab" data-category="breaking">Breaking</div>
+                    <div class="filter-tab" data-category="local">Local</div>
+                    <div class="filter-tab" data-category="business">Business</div>
+                    <div class="filter-tab" data-category="sports">Sports</div>
+                </div>
+            </div>
+            
+            <div id="local-news-container" class="news-grid">
+                <div id="loading-message">
+                    <div class="loading-spinner"></div>
+                    Fetching your location and latest news...
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+</body>
+</html>
+
+>>>>>>> d7badeea86b5ad9e6abe80a666a11d1c89e6ba13
