@@ -1,73 +1,68 @@
 import { useState } from "react";
+import api from "../api";
 
-export default function AIChat({ transactions = [] }) {
-  const [input, setInput] = useState("");
-  const [messages, setMessages] = useState([]);
-  const [loading, setLoading] = useState(false);
+export default function AIChat() {
+  const [q,setQ] = useState("");
+  const [msgs,setMsgs] = useState([]);
+  const [loading,setLoading] = useState(false);
 
-  const sendMessage = async () => {
-    if (!input.trim()) return;
-    
-    const userMsg = { role: "user", content: input };
-    setMessages(prev => [...prev, userMsg]);
+  const ask = async () => {
+    if (!q) return;
+
+    setMsgs(m=>[...m,{role:"user",text:q}]);
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:8001/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          message: input,
-          transactions,
-          history: messages,
-        }),
+      const r = await api.post("/ai/chat", {
+        question:q
       });
 
-      const data = await res.json();
+      setMsgs(m=>[
+        ...m,
+        { role:"ai", text:r.data.reply }
+      ]);
 
-      const aiMsg = { role: "assistant", content: data.reply };
-      setMessages(prev => [...prev, aiMsg]);
-
-    } catch (err) {
-      setMessages(prev => [...prev, {
-        role: "assistant",
-        content: "⚠ AI service unavailable."
-      }]);
+    } catch {
+      setMsgs(m=>[
+        ...m,
+        { role:"ai", text:"AI service unavailable" }
+      ]);
     }
 
-    setInput("");
     setLoading(false);
+    setQ("");
   };
 
   return (
-    <div className="bg-slate-950/60 border border-white/10 rounded-xl p-4 h-80 flex flex-col">
-      <div className="flex-1 overflow-y-auto space-y-2 text-sm">
-        {messages.map((m, i) => (
-          <div key={i} className={`p-2 rounded-lg ${
-            m.role === "user" ? "bg-indigo-700 text-white ml-auto max-w-[75%]" : "bg-slate-800 text-slate-200 max-w-[85%]"
-          }`}>
-            {m.content}
+    <div className="space-y-3">
+
+      <div className="max-h-64 overflow-y-auto space-y-2">
+        {msgs.map((m,i)=>(
+          <div key={i}
+            className={`p-2 rounded-xl text-sm
+            ${m.role==="user"
+              ? "bg-indigo-600 text-white ml-10"
+              : "bg-slate-700 text-white mr-10"}`}>
+            {m.text}
           </div>
         ))}
-        {loading && <p className="text-slate-400">Thinking...</p>}
+        {loading && <div className="text-sm opacity-70">Thinking…</div>}
       </div>
 
-      <div className="flex mt-2 gap-2">
+      <div className="flex gap-2">
         <input
-          className="flex-1 bg-slate-800 text-white p-2 rounded-lg border border-white/10"
-          placeholder="Ask financial questions..."
-          value={input}
-          onChange={e => setInput(e.target.value)}
+          value={q}
+          onChange={e=>setQ(e.target.value)}
+          className="flex-1 p-2 rounded bg-slate-800 border border-slate-700"
+          placeholder="Ask finance questions..."
         />
         <button
-          onClick={sendMessage}
-          disabled={loading}
-          className="bg-indigo-600 px-3 rounded-lg disabled:opacity-50"
-        >
-          Send
+          onClick={ask}
+          className="bg-indigo-600 px-4 rounded">
+          Ask
         </button>
       </div>
+
     </div>
   );
 }
-
