@@ -14,15 +14,12 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-/* ===== ROUTES ===== */
 app.use("/api/auth", authRoutes);
 app.use("/api/transactions", txRoutes);
 app.use("/api/ai", aiRoutes);
 
-/* ===== TEST ROUTE ===== */
 app.get("/test", (req, res) => res.send("OK"));
 
-/* ===== START SERVER AFTER DB CONNECT ===== */
 mongoose.connect(process.env.MONGO_URL)
   .then(() => {
     console.log("Mongo connected");
@@ -31,6 +28,4 @@ mongoose.connect(process.env.MONGO_URL)
       console.log("Server running");
     });
   })
-  .catch(err => {
-    console.error("Mongo error:", err);
-  });
+  .catch(err => console.error("Mongo error:", err));
