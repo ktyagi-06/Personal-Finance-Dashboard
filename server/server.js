@@ -1,19 +1,20 @@
 import express from "express";
-import cors from "cors";
 import mongoose from "mongoose";
-import dotenv from "dotenv";
+import dotenv from "dotenv";      
 import authRoutes from "./routes/auth.js";
 import txRoutes from "./routes/transactions.js";
 import aiRoutes from "./routes/ai.js";
 require("dotenv").config()
 
 /* ===== CREATE APP FIRST ===== */
-const app = express();
-
-/* ===== MIDDLEWARE ===== */
+const express = require("express")
 const cors = require("cors")
-app.use(cors());
-app.use(express.json());
+require("dotenv").config()
+
+const app = express()
+
+app.use(cors())
+app.use(express.json())
 
 /* ===== ROUTES ===== */
 app.use("/api/auth", authRoutes);
