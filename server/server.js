@@ -16,7 +16,7 @@ app.use(express.json());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/transactions", txRoutes);
-app.use("/api/ai", aiRoutes);
+//app.use("/api/ai", aiRoutes);
 
 app.get("/test", (req, res) => res.send("OK"));
 
