@@ -14,7 +14,7 @@ Built with a modern MERN-style stack and glassmorphism UI design.
 * 🧾 Category-wise expense breakdown
 * 📈 Monthly & trend charts
 * 🌙 Dark / Light theme toggle
-* 🤖 AI assistant module (planned upgrade)
+* 🤖 AI assistant module (coming soon)
 * 👤 User-isolated financial data
 * ⚡ Real-time dashboard refresh
 
@@ -89,9 +89,6 @@ Backend can be deployed on **Render / Railway**
 ---
 
 ## 🔮 Roadmap
-
-* Local LLM AI Finance Assistant
-* AI spending insights
 * Budget alerts
 * Export reports
 * Mobile layout
