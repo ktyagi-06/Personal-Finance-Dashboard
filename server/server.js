@@ -19,7 +19,13 @@ app.use("/api/transactions", txRoutes);
 //app.use("/api/ai", aiRoutes);
 
 app.get("/test", (req, res) => res.send("OK"));
+app.get("/", (req, res) => {
+  res.send("Personal Finance API is running");
+});
 
+app.get("/test", (req, res) => {
+  res.send("OK");
+});
 mongoose.connect(process.env.MONGO_URL)
   .then(() => {
     console.log("Mongo connected");
