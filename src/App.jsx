@@ -9,7 +9,8 @@ import {
   LineElement, PointElement,
   BarElement,
 } from "chart.js";
-
+<Route path="/login" element={<Login />} />
+<Route path="/register" element={<Register />} />
 ChartJS.register(
   ArcElement, Tooltip, Legend,
   CategoryScale, LinearScale,
