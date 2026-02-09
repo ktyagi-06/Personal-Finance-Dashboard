@@ -1,7 +1,11 @@
 import AIChat from "./components/AIChat";
 import api from "./api";
 import { useState, useEffect } from "react";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
+<Route path="/login" element={<Login />} />
+<Route path="/register" element={<Register />} />
 import { Doughnut, Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
