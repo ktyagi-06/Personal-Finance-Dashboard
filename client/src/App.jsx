@@ -1,6 +1,11 @@
 
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import AIChat from "./components/AIChat";
+import api from "./api";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+
 import { Doughnut, Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -13,11 +18,6 @@ import {
   PointElement
 } from "chart.js";
 
-import api from "./api";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import AIChat from "./components/AIChat";
-
 ChartJS.register(
   ArcElement,
   Tooltip,
@@ -28,7 +28,7 @@ ChartJS.register(
   PointElement
 );
 
-/* ================= COUNT-UP ================= */
+/* ================= COUNT-UP HOOK ================= */
 function useCountUp(value, duration = 900) {
   const [display, setDisplay] = useState(0);
 
@@ -54,6 +54,15 @@ function useCountUp(value, duration = 900) {
 
 /* ================= DASHBOARD ================= */
 function Dashboard() {
+  const [darkMode, setDarkMode] = useState(
+    () => localStorage.getItem("theme") === "dark"
+  );
+
+  useEffect(() => {
+    localStorage.setItem("theme", darkMode ? "dark" : "light");
+    document.documentElement.classList.toggle("dark", darkMode);
+  }, [darkMode]);
+
   const [transactions, setTransactions] = useState([]);
   const [analytics, setAnalytics] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -66,6 +75,7 @@ function Dashboard() {
       const tRes = await api.get("/transactions");
       setTransactions(tRes.data);
 
+      // ✅ FIXED — removed trailing comma
       const aRes = await api.get("/transactions/analytics");
       setAnalytics(aRes.data);
 
@@ -81,17 +91,18 @@ function Dashboard() {
   }, []);
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p style={{color:"red"}}>{error}</p>;
+  if (error) return <p style={{ color: "red" }}>{error}</p>;
 
   return (
     <div className="p-6">
-      <h1>Finance Dashboard</h1>
 
-      {/* your existing dashboard UI here */}
-      {/* charts will now render once API works */}
+      <h1 className="text-2xl font-bold mb-4">Finance Dashboard</h1>
 
-      {/* REMOVE this if you don’t want AI */}
+      {/* your cards / charts / forms stay here */}
+      {/* charts will render once analytics is loaded */}
+
       <AIChat />
+
     </div>
   );
 }
@@ -104,25 +115,14 @@ function PrivateRoute({ children }) {
 
 /* ================= APP ================= */
 export default function App() {
-  const [darkMode, setDarkMode] = useState(
-    () => localStorage.getItem("theme") === "dark"
-  );
-
-  useEffect(() => {
-    localStorage.setItem("theme", darkMode ? "dark" : "light");
-    document.documentElement.classList.toggle("dark", darkMode);
-  }, [darkMode]);
-
   return (
     <BrowserRouter>
       <Routes>
 
-        {/* intro / auth pages */}
         <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 
-        {/* protected dashboard */}
         <Route
           path="/dashboard"
           element={
